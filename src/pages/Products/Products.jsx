@@ -54,18 +54,26 @@ const Products = () => {
     }
 
     // calculate total purchase price
-    const totalPurchase = products.reduce((acc, product) => {
-        const purchase = Number(product.purchasePrice || 0);
-        const quantity = Number(product.stock || 0);
-        return acc + (purchase * quantity);
-    }, 0);
+    const totalPurchase = Array.isArray(products)
+        ? products
+            .filter(product => product) // remove undefined/null
+            .reduce((acc, product) => {
+                const purchase = Number(product.purchasePrice || 0);
+                const quantity = Number(product.stock || 0);
+                return acc + purchase * quantity;
+            }, 0)
+        : 0;
 
     // calculate total sell price
-    const totalSell = products.reduce((acc, product) => {
-        const sell = Number(product.sellPrice || 0);
-        const quantity = Number(product.stock || 0);
-        return acc + (sell * quantity);
-    }, 0);
+    const totalSell = Array.isArray(products)
+        ? products
+            .filter(product => product) // remove undefined/null
+            .reduce((acc, product) => {
+                const sell = Number(product.sellPrice || 0);
+                const quantity = Number(product.stock || 0);
+                return acc + sell * quantity;
+            }, 0)
+        : 0;
 
     // calculate total profit
     const totalProfit = totalSell - totalPurchase;
