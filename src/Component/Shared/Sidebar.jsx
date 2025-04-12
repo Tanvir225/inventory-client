@@ -12,7 +12,7 @@ const Sidebar = () => {
                 <NavLink to={"/products"}>Products</NavLink>
             </li>
             <li>
-                <NavLink to={"/"}>Purchase</NavLink>
+                <NavLink to={"/purchase"}>Purchase</NavLink>
             </li>
             <li>
                 <NavLink to={"/sell"}>Sell</NavLink>

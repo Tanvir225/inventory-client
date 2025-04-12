@@ -29,12 +29,7 @@ const ProductsGrid = ({ products, loading, updateProduct, deleteProduct }) => {
             }
 
         },
-        {
-            field: "sellPrice", sortable: true, filter: true, floatingFilter: true,
-            valueFormatter: (params) => {
-                return `${params.value} tk`;
-            }
-        },
+      
         {
             field: "stock",
             sortable: true,
@@ -43,6 +38,13 @@ const ProductsGrid = ({ products, loading, updateProduct, deleteProduct }) => {
             valueGetter: (params) => {
                 const data = params.data || {};
                 return `${data.stock ?? "-"} ${data.unit ?? ""}`; // Combine stock and unit safely
+            }
+        },
+
+        {
+            field: "sellPrice", sortable: true, filter: true, floatingFilter: true,
+            valueFormatter: (params) => {
+                return `${params.value} tk`;
             }
         },
 
@@ -74,8 +76,8 @@ const ProductsGrid = ({ products, loading, updateProduct, deleteProduct }) => {
 
     // pagination settings
     const pagination = true;
-    const paginationPageSize = 20;
-    const paginationPageSizeSelector = [20, 50, 100];
+    const paginationPageSize = 10;
+    const paginationPageSizeSelector = [10, 20, 50];
 
 
 
@@ -139,7 +141,7 @@ const ProductsGrid = ({ products, loading, updateProduct, deleteProduct }) => {
 
 
     return (
-        <div className="ag-theme-quartz w-full ">
+        <div className="ag-theme-quartz w-full h-96">
             <AgGridReact
 
                 pagination={pagination}
@@ -150,7 +152,7 @@ const ProductsGrid = ({ products, loading, updateProduct, deleteProduct }) => {
                 animateRows={true}
                 rowData={products}
                 columnDefs={colDefs}
-                domLayout="autoHeight"
+           
             />
 
             {/* Modal for editing a product */}

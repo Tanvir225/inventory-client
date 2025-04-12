@@ -3,6 +3,8 @@ import Main from "../Layout/Main";
 import Home from "../pages/Home/Home";
 import Sell from "../pages/Sell/Sell";
 import Products from "../pages/Products/Products";
+import Purchase from "../pages/Purchase/Purchase";
+import NewPurchase from "../pages/Purchase/NewPurchase";
 
 const router = createBrowserRouter([
     {
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
             {
                 path: "/products",
                 element:<Products></Products>
+            },
+            {
+                path: "/purchase",
+                element:<Purchase></Purchase>
+            },
+            {
+                path: "/purchase/add",
+                element:<NewPurchase></NewPurchase>
             },
             {
                 path: "/sell",
