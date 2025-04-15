@@ -21,20 +21,26 @@ const usePurchase = () => {
         }
     };
 
-    // Update only givenCash and totalAmount
     const updatePurchase = async (purchaseId, { givenCash }) => {
         try {
             const response = await axios.patch(`/purchase/${purchaseId}`, {
                 givenCash,
             });
-
-            // Optional: Update local state if needed
+    
+            const updated = response.data?.updated; // assuming your backend sends this
+            if (!updated) throw new Error("No updated data from server");
+    
+            // Directly update local state with server response
             const updatedPurchases = purchase.map(p =>
-                p._id === purchaseId ? { ...p, givenCash } : p
+                p._id === purchaseId ? { ...p, ...updated } : p
             );
             setPurchase(updatedPurchases);
-
-            return { success: true, data: response.data, message: "Purchase updated successfully" };
+    
+            return {
+                success: true,
+                data: updated,
+                message: "Purchase updated successfully",
+            };
         } catch (error) {
             setError(error);
             return {
@@ -43,6 +49,7 @@ const usePurchase = () => {
             };
         }
     };
+    
 
     // Delete purchase
     const deletePurchase = async (id) => {

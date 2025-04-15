@@ -89,12 +89,12 @@ const Products = () => {
                     <p className="text-sm text-gray-700">Manage your products here</p>
                     <div className="flex flex-col mt-1">
                         <div>
-                            <p className="text-sm text-gray-700">Total Purchase Price: <span className="font-semibold text-primary">{totalPurchase} TK</span></p>
+                            <p className="text-sm text-gray-700">Total Purchase Price: <span className="font-semibold text-primary">{totalPurchase.toFixed(2)} TK</span></p>
 
                         </div>
                         <div className="flex gap-2">
-                            <p className="text-sm text-gray-700">Total Sell Price: <span className="font-semibold text-primary">{totalSell} TK</span></p>
-                            <p className="text-sm text-gray-700">Total Profit : <span className="font-semibold text-primary">{totalProfit} TK</span></p>
+                            <p className="text-sm text-gray-700">Total Sell Price: <span className="font-semibold text-primary">{totalSell.toFixed(2)} TK</span></p>
+                            <p className="text-sm text-gray-700">Total Profit : <span className="font-semibold text-primary">{totalProfit.toFixed(2)} TK</span></p>
                         </div>
                     </div>
                 </div>
