@@ -3,7 +3,7 @@ import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 
 import Loading from '../Shared/Loading';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import usePurchase from '../../Hook/usePurchase';
 import toast from 'react-hot-toast';
 
@@ -11,6 +11,7 @@ import toast from 'react-hot-toast';
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const PurchaseGrid = ({ purchase }) => {
+    const gridRef = useRef();
 
     //useState for givenChash
     const [givenCash, setGivenCash] = useState(0);
@@ -53,7 +54,7 @@ const PurchaseGrid = ({ purchase }) => {
                         </button>
                         <button
                             className="btn btn-sm btn-outline btn-error"
-                            onClick={() => handleUpdate(params.data._id, document.getElementById('my_modal_1').showModal())}
+                            onClick={() => handleUpdate(params.data._id)}
                         >
                             Update
                         </button>
@@ -69,21 +70,32 @@ const PurchaseGrid = ({ purchase }) => {
     const paginationPageSizeSelector = [10, 20, 50];
 
     //handleUpdate function
-    const handleUpdate = async (id) => {
+    const handleUpdate = (id) => {
         setId(id);
-
+        const purchaseToUpdate = purchase.find(p => p._id === id);
+        if (purchaseToUpdate) {
+            setGivenCash(""); // reset input for fresh deposit
+        }
+        document.getElementById('my_modal_1').showModal();
     };
+
 
     //handleSubmit function
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(id, givenCash);
         const response = await updatePurchase(id, { givenCash });
+
         if (response.success) {
-            toast.success(`${response.message}`);
+            toast.success(response.message);
             document.getElementById('my_modal_1').close();
+
+            // Manually refresh ag-Grid row
+            const rowNode = gridRef.current.api.getRowNode(id);
+            if (rowNode) {
+                rowNode.setData({ ...rowNode.data, ...response.data });
+            }
         } else {
-           toast.error(`${response.message}`);
+            toast.error(response.message);
         }
     };
 
@@ -92,11 +104,11 @@ const PurchaseGrid = ({ purchase }) => {
         <div className='ag-theme-quartz w-full h-96'>
 
             <AgGridReact
-
+                ref={gridRef}
                 pagination={pagination}
                 paginationPageSize={paginationPageSize}
                 paginationPageSizeSelector={paginationPageSizeSelector}
-                key={purchase.length} // 👈 triggers re-render when length changes
+                key={JSON.stringify(purchase)} // 👈 will re-render on data change// 👈 triggers re-render when length changes
                 getRowId={(params) => params.data._id} // 👈 use _id as row ID
                 animateRows={true}
                 rowData={purchase}
@@ -108,7 +120,7 @@ const PurchaseGrid = ({ purchase }) => {
             <dialog id="my_modal_1" className="modal">
                 <div className="modal-box space-y-5">
                     <h3 className="font-bold text-lg">Deposit!</h3>
-                    <form  onSubmit={handleSubmit} >
+                    <form onSubmit={handleSubmit} >
                         <input onChange={(e) => setGivenCash(e.target.value)} type="number" placeholder='deposit amount' className='input input-bordered focus:outline-none input-primary w-full p-5' />
                     </form>
                     <div className="modal-action">
