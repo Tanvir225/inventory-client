@@ -54,8 +54,9 @@ const AddPurchase = () => {
                 supplierName,
                 supplierPhone,
                 givenCash,
-                items: entries.map(({ productId, quantity, unitPrice }) => ({
+                items: entries.map(({ productId, name, quantity, unitPrice }) => ({
                     productId,
+                    name,
                     quantity,
                     unitPrice
                 }))

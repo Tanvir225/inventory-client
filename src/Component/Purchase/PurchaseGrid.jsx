@@ -6,6 +6,7 @@ import Loading from '../Shared/Loading';
 import { useRef, useState } from 'react';
 import usePurchase from '../../Hook/usePurchase';
 import toast from 'react-hot-toast';
+import useAxios from '../../Hook/useAxios';
 
 // Register all Community features
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -13,12 +14,18 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 const PurchaseGrid = ({ purchase }) => {
     const gridRef = useRef();
 
+    //details state
+    const [details, setDetails] = useState();
+
     //useState for givenChash
     const [givenCash, setGivenCash] = useState(0);
     const [id, setId] = useState(0);
 
     //usePurchase hook
     const { updatePurchase } = usePurchase();
+
+    //axios hook
+    const axios = useAxios();
 
     // Column definitions for the grid
     const [colDefs, setColDefs] = useState([
@@ -48,7 +55,7 @@ const PurchaseGrid = ({ purchase }) => {
                     <div className="flex items-center gap-2 my-1">
                         <button
                             className="btn btn-sm btn-outline btn-primary"
-
+                            onClick={() => handleDetails(params.data._id)}
                         >
                             Details
                         </button>
@@ -99,6 +106,21 @@ const PurchaseGrid = ({ purchase }) => {
         }
     };
 
+    //handleDetails function
+    const handleDetails = async (id) => {
+        // console.log(id);
+        //axios get request to get purchase details
+        const response = await axios.get(`/purchase/${id}`);
+        if (response?.data) {
+            console.log(response?.data);
+            setDetails(response?.data);
+            //open modal
+            document.getElementById('details_modal').showModal();
+        }
+
+
+    }
+
 
     return (
         <div className='ag-theme-quartz w-full h-96'>
@@ -116,7 +138,7 @@ const PurchaseGrid = ({ purchase }) => {
 
             />
 
-            {/* modal */}
+            {/* modal for deposit amount form */}
             <dialog id="my_modal_1" className="modal">
                 <div className="modal-box space-y-5">
                     <h3 className="font-bold text-lg">Deposit!</h3>
@@ -131,6 +153,47 @@ const PurchaseGrid = ({ purchase }) => {
                     </div>
                 </div>
             </dialog>
+
+
+            {/* modal for purchse details */}
+            <dialog id="details_modal" className="modal">
+                <div className="modal-box space-y-3">
+                    <h3 className="font-bold text-lg">Purchase Details</h3>
+
+                    {details ? (
+                        <div className="space-y-1">
+                            <p><strong>Date:</strong> {details.createdAt}</p>
+                            <p><strong>Supplier:</strong> {details.supplierName} ({details.supplierPhone})</p>
+                            <p><strong>Total Amount:</strong> {details.totalAmount} tk</p>
+                            <p><strong>Deposit:</strong> {details.givenCash} tk</p>
+                            <p><strong>Due:</strong> {details.dueAmount} tk</p>
+
+                            {/* If you store items array inside the purchase */}
+                            {details?.items && (
+                                <div>
+                                    <h4 className="font-bold mt-2">Products:</h4>
+                                    <ul className="list-disc ml-5">
+                                        {details.items.map((item, i) => (
+                                            <li key={i}>
+                                                {item.name} - {item.quantity} x {item.unitPrice} tk
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                    ) : <p>Loading...</p>}
+
+                    <div className="modal-action">
+                        <form method="dialog">
+                            <button className="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+
+
+
 
         </div>
     );
