@@ -88,22 +88,22 @@ const AddPurchase = () => {
 
                 {entries.map((entry, idx) => (
 
-                    <div key={idx} className="border p-3 rounded flex justify-between w-full gap-3 items-center">
+                    <div key={idx} className="border p-3 rounded flex flex-col lg:flex-row justify-between w-full gap-3 items-center">
 
-                        <div className="w-full">
+                        <div className="w-full ">
                             <input
                                 type="text"
                                 placeholder="পণ্য সার্চ করুন"
                                 value={entry.name || search}
                                 onChange={(e) => handleSearch(e.target.value)}
-                                className="input input-bordered input-primary focus:outline-none"
+                                className="input input-bordered input-primary focus:outline-none w-full lg:w-96"
                             />
                             {search &&
-                                <div className="bg-white shadow border rounded mt-1 max-h-40 overflow-y-scroll w-full">
+                                <div className="absolute z-20 w-64 md:w-96 lg:w-96 bg-white shadow border rounded h-28 overflow-y-scroll ">
                                     {filterProducts.map(product => (
                                         <div
                                             key={product._id}
-                                            className=" p-1 hover:bg-blue-100 cursor-pointer items-center flex justify-between"
+                                            className=" p-3 hover:bg-blue-100 cursor-pointer items-center flex justify-between"
                                             onClick={() => handleClick(idx, product)}
                                         >
                                             <span>{product.name}</span>

@@ -5,6 +5,7 @@ import Sell from "../pages/Sell/Sell";
 import Products from "../pages/Products/Products";
 import Purchase from "../pages/Purchase/Purchase";
 import NewPurchase from "../pages/Purchase/NewPurchase";
+import NewSell from "../pages/Sell/NewSell";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path: "/sell",
                 element:<Sell></Sell>
+            },
+            {
+                path: "/sell/new",
+                element:<NewSell></NewSell>
             },
         ]
     }
