@@ -3,13 +3,14 @@ import Loading from "../../Component/Shared/Loading";
 import useProducts from "../../Hook/useProducts";
 import useAxios from "../../Hook/useAxios";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const NewSell = () => {
     const [search, setSearch] = useState("");
     const [id, setId] = useState();
     const [productName, setProductName] = useState("");
     const [sellPrice, setSellPrice] = useState();
-    const [discount, setDiscount] = useState();
+    const [discount, setDiscount] = useState(0);
     const [returnAmount, setReturnAmount] = useState();
     const [due, setDue] = useState();
     const [quantity, setQuantity] = useState();
@@ -51,11 +52,14 @@ const NewSell = () => {
             givenCash: Number(givenCash),
             total,
             dueAmount: due,
+            discount: Number(discount),
+            returnAmount: returnAmount,
             items: updateSell,
         };
         const res = await axios.post("/sales", saleData);
         console.log(res.data);
-        alert("Sale completed!");
+        toast.success(res?.data?.message);
+
         // Reset form
         setUpdateSell([]);
         setCustomerName("");
