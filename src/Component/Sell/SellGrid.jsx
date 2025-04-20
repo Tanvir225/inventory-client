@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { AgGridReact } from "ag-grid-react";
 
 
-const SellGrid = ({ sell }) => {
+const SellGrid = ({ sell,refetch }) => {
 
     const gridRef = useRef();
 
@@ -107,7 +107,7 @@ const SellGrid = ({ sell }) => {
                 rowNode.setData({ ...rowNode.data, ...response.data });
             }
 
-          
+          refetch(); // Refetch to get the latest data
            
         } else {
             toast.error(response.message);
@@ -132,7 +132,7 @@ const SellGrid = ({ sell }) => {
 
 
     return (
-        <div className='ag-theme-quartz w-full h-96 text-center'>
+        <div className='ag-theme-quartz w-full h-96 '>
 
             <AgGridReact
                 ref={gridRef}

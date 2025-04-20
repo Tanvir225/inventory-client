@@ -6,7 +6,7 @@ import Loading from '../../Component/Shared/Loading';
 import SellGrid from '../../Component/Sell/SellGrid';
 
 const Sell = () => {
-    const { sell, loading, error } = useSell();
+    const { sell, loading, error,refetch } = useSell();
 
     // Check if loading or error
     if (loading) {
@@ -40,7 +40,7 @@ const Sell = () => {
             </div>
 
             {/* sell table */}
-            <SellGrid sell={sell}></SellGrid>
+            <SellGrid sell={sell} refetch={refetch}></SellGrid>
         </div>
     );
 };

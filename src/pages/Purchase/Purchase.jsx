@@ -8,10 +8,16 @@ import Loading from "../../Component/Shared/Loading";
 const Purchase = () => {
 
     // purchase hook
-    const { purchase, loading } = usePurchase();
+    const { purchase, loading,refetch } = usePurchase();
 
     //reduce total amount
     const totalAmount = purchase.reduce((acc, curr) => acc + curr.totalAmount, 0);
+
+    //reduce total givenCash
+    const givenCash = purchase.reduce((acc, curr) => acc + curr.givenCash, 0);
+
+    //reduce total due amount
+    const dueAmount = purchase.reduce((acc, curr) => acc + curr.dueAmount, 0);
 
 
     //loading state
@@ -27,6 +33,8 @@ const Purchase = () => {
                     <h1 className="text-xl font-semibold">Purchase</h1>
                     <p className="text-gray-500">Manage your purchase</p>
                     <p className="text-sm text-gray-700">Total Purchase: <span className="font-semibold text-primary">{totalAmount} TK</span></p>
+                    <p className="text-sm text-gray-700">Total Paid: <span className="font-semibold text-primary">{givenCash} TK</span></p>
+                    <p className="text-sm text-gray-700">My Due: <span className="font-semibold text-red-800">{dueAmount} TK</span></p>
 
                 </div>
                 <Link to={"/purchase/add"} className="btn btn-primary btn-outline">
@@ -36,7 +44,7 @@ const Purchase = () => {
 
             {/* purchase table */}
             <div className="my-5">
-                <PurchaseGrid purchase={purchase}></PurchaseGrid>
+                <PurchaseGrid purchase={purchase} refetch={refetch}></PurchaseGrid>
             </div>
         </div>
     );

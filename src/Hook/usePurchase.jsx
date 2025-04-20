@@ -74,7 +74,8 @@ const usePurchase = () => {
         error,
         fetchPurchases,
         updatePurchase, // only for givenCash & totalAmount
-        deletePurchase
+        deletePurchase,
+        refetch: fetchPurchases, // Refetch function
     };
 };
 

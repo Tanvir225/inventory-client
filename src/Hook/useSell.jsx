@@ -75,7 +75,8 @@ const useSell = () => {
         error,
         fetchSell,
         updateSell, // only for givenCash & totalAmount
-        deleteSell
+        deleteSell,
+        refetch: fetchSell, // Refetch function
     };
 };
 

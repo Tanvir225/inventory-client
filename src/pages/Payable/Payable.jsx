@@ -1,5 +1,5 @@
 
-import { useEffect } from "react";
+
 import SellGrid from "../../Component/Sell/SellGrid";
 import Loading from "../../Component/Shared/Loading";
 import useDueSell from "../../Hook/useDueSell";
@@ -10,6 +10,8 @@ const Payable = () => {
     //useDueSell hook to get the dues data
     const { dueSell, loading,refetch } = useDueSell();
 
+    //reduce the total amount of dues
+    const total = dueSell.reduce((acc, curr) => acc + curr.dueAmount, 0);
   
 
     // Check if loading or error
@@ -25,13 +27,13 @@ const Payable = () => {
                 <div>
                     <h1 className="text-xl font-semibold">Due - Sell</h1>
                     <p className="text-gray-500">Manage your Dues</p>
-                    <p className="text-sm text-gray-700">Total Dues: <span className="font-semibold text-primary">00 TK</span></p>
+                    <p className="text-sm text-gray-700">Total Dues: <span className="font-semibold text-primary">{total} TK</span></p>
 
                 </div>
             </div>
 
             {/* sell table */}
-            <SellGrid sell={dueSell} ></SellGrid>
+            <SellGrid sell={dueSell} refetch={refetch} ></SellGrid>
         </div>
     );
 };

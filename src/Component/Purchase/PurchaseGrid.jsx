@@ -11,7 +11,7 @@ import useAxios from '../../Hook/useAxios';
 // Register all Community features
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const PurchaseGrid = ({ purchase }) => {
+const PurchaseGrid = ({ purchase,refetch }) => {
     const gridRef = useRef();
 
     //details state
@@ -101,6 +101,7 @@ const PurchaseGrid = ({ purchase }) => {
             if (rowNode) {
                 rowNode.setData({ ...rowNode.data, ...response.data });
             }
+            refetch(); // Refetch to get the latest data
         } else {
             toast.error(response.message);
         }
