@@ -36,7 +36,7 @@ const useSell = () => {
                 p._id === sellId ? { ...p, ...updated } : p
             );
             setSell(updatedSell);
-
+            await fetchSell(); // Refetch to get the latest data
             return {
                 success: true,
                 data: updated,

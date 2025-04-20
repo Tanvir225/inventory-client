@@ -164,18 +164,20 @@ const SellGrid = ({ sell }) => {
             </dialog>
 
 
-            {/* modal for purchse details */}
+            {/* modal for sell details */}
             <dialog id="details_modal" className="modal">
-                <div className="modal-box space-y-3">
+                <div className="modal-box space-y-3 text-left">
                     <h3 className="font-bold text-lg">Sell Details</h3>
 
                     {details ? (
                         <div className="space-y-1">
                             <p><strong>Date:</strong> {details.date}</p>
-                            <p><strong>Supplier:</strong> {details.customerName} ({details.customerPhone})</p>
+                            <p><strong>Customer:</strong> {details.customerName} ({details.customerPhone})</p>
                             <p><strong>Total Amount:</strong> {details.total} tk</p>
                             <p><strong>Deposit:</strong> {details.givenCash} tk</p>
                             <p><strong>Due:</strong> {details.dueAmount} tk</p>
+                            <p><strong>Return:</strong> {details.returnAmount} tk</p>
+                            <p><strong>Discount:</strong> {details.discount} tk</p>
 
                             {/* If you store items array inside the purchase */}
                             {details?.items && (
