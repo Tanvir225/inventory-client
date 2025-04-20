@@ -6,6 +6,7 @@ import Products from "../pages/Products/Products";
 import Purchase from "../pages/Purchase/Purchase";
 import NewPurchase from "../pages/Purchase/NewPurchase";
 import NewSell from "../pages/Sell/NewSell";
+import Payable from "../pages/Payable/Payable";
 
 const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
             {
                 path: "/sell/new",
                 element:<NewSell></NewSell>
+            },
+            {
+                path: "/payable",
+                element:<Payable></Payable>
             },
         ]
     }

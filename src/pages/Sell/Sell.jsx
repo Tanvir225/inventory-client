@@ -14,7 +14,7 @@ const Sell = () => {
     }
 
     return (
-        <div>
+        <div className='space-y-5 '>
             {/* topbar */}
             <div className="flex justify-between items-center  p-2 border-b-2 border-gray-200">
                 <div>

@@ -106,6 +106,9 @@ const SellGrid = ({ sell }) => {
             if (rowNode) {
                 rowNode.setData({ ...rowNode.data, ...response.data });
             }
+
+          
+           
         } else {
             toast.error(response.message);
         }
