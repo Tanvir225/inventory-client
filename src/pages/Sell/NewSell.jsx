@@ -4,6 +4,7 @@ import useProducts from "../../Hook/useProducts";
 import useAxios from "../../Hook/useAxios";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import BillPrint from "../../Component/Sell/BillPrint";
 
 const NewSell = () => {
     const [search, setSearch] = useState("");
@@ -19,6 +20,8 @@ const NewSell = () => {
     const [customerName, setCustomerName] = useState("");
     const [customerPhone, setCustomerPhone] = useState("");
     const [givenCash, setGivenCash] = useState(0);
+
+    const [printData, setPrintData] = useState(null);
 
     const axios = useAxios();
     const { loading, products } = useProducts();
@@ -59,7 +62,7 @@ const NewSell = () => {
         const res = await axios.post("/sales", saleData);
         console.log(res.data);
         toast.success(res?.data?.message);
-
+        setPrintData(saleData); // Set the data to be printed
         // Reset form
         setUpdateSell([]);
         setCustomerName("");
@@ -76,7 +79,7 @@ const NewSell = () => {
 
         if (totalPrice > numericGivenCash) {
             if (totalPriceWithDiscount) {
-                setDue(totalPrice - numericGivenCash- numericDiscount);
+                setDue(totalPrice - numericGivenCash - numericDiscount);
                 setReturnAmount(0);
 
             }
@@ -84,7 +87,7 @@ const NewSell = () => {
 
         } else {
             setDue(0);
-            setReturnAmount(numericGivenCash - totalPrice+numericDiscount);
+            setReturnAmount(numericGivenCash - totalPrice + numericDiscount);
         }
     }, [givenCash, updateSell, totalPrice, discount]);
 
@@ -92,6 +95,13 @@ const NewSell = () => {
     const filterProducts = products.filter(product =>
         product.name.toLowerCase().includes(search.toLowerCase())
     );
+
+    // Remove item from the list
+    const handleRemoveItem = (indexToRemove) => {
+        const updatedList = updateSell.filter((_, index) => index !== indexToRemove);
+        setUpdateSell(updatedList);
+    };
+
 
     if (loading) return <Loading />;
 
@@ -157,6 +167,7 @@ const NewSell = () => {
                             <th>Qty</th>
                             <th>Price</th>
                             <th>Subtotal</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -166,6 +177,9 @@ const NewSell = () => {
                                 <td>{item.quantity}</td>
                                 <td>{item.sellPrice} Tk</td>
                                 <td>{item.quantity * item.sellPrice} Tk</td>
+                                <td>
+                                    <button className="btn btn-xs btn-error" onClick={() => handleRemoveItem(i)}>Remove</button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -213,6 +227,15 @@ const NewSell = () => {
             <button className="btn btn-success text-white w-full mt-2" onClick={handleFinalSubmit}>
                 Confirm Sale
             </button>
+
+            {/* Show modal when sale confirmed */}
+            {printData && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-white rounded shadow p-4">
+                        <BillPrint saleData={printData} onClose={() => setPrintData(null)} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

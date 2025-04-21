@@ -11,28 +11,92 @@ const Sidebar = () => {
     const links = (
         <>
             <li>
-                <NavLink to={"/"} className={"btn btn-outline border-x-neutral"}><BsShopWindow size={20}></BsShopWindow> Home</NavLink>
+                <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "btn bg-white text-black border-none"
+                            : "btn btn-outline border-x-neutral"
+                    }
+                >
+                    <BsShopWindow size={20} /> Home
+                </NavLink>
             </li>
             <li>
-                <NavLink to={"/products"} className={"btn btn-outline border-x-neutral border-y-neutral"}><AiOutlineProduct size={20}></AiOutlineProduct> Products</NavLink>
+                <NavLink
+                    to="/products"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "btn bg-white text-black border-none"
+                            : "btn btn-outline border-x-neutral "
+                    }
+                >
+                    <AiOutlineProduct size={20} /> Products
+                </NavLink>
             </li>
             <li>
-                <NavLink to={"/purchase"} className={"btn btn-outline border-x-neutral border-y-neutral"}> <BiPurchaseTagAlt size={20} ></BiPurchaseTagAlt>Purchase</NavLink>
+                <NavLink
+                    to="/purchase"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "btn bg-white text-black border-none"
+                            : "btn btn-outline border-x-neutral "
+                    }
+                >
+                    <BiPurchaseTagAlt size={20} /> Purchase
+                </NavLink>
             </li>
             <li>
-                <NavLink to={"/sell"} className={"btn px-5 btn-outline border-x-neutral border-y-neutral "}><GiSellCard size={20}></GiSellCard>  Sell</NavLink>
+                <NavLink
+                    to="/sell"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "btn bg-white text-black border-none"
+                            : "btn btn-outline border-x-neutral "
+                    }
+                >
+                    <GiSellCard size={20} /> Sell
+                </NavLink>
             </li>
             <li>
-                <NavLink to={"/payable"} className={"btn btn-outline border-x-neutral border-y-neutral"}><GiPayMoney size={20} className='mt-1'></GiPayMoney> Payable</NavLink>
+                <NavLink
+                    to="/payable"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "btn bg-white text-black border-none"
+                            : "btn btn-outline border-x-neutral "
+                    }
+                >
+                    <GiPayMoney size={20} className="mt-1" /> Payable
+                </NavLink>
             </li>
             <li>
-                <NavLink to={"/"} className={"btn btn-outline border-x-neutral border-y-neutral"}><GiExpense size={20} ></GiExpense> Expense</NavLink>
+                <NavLink
+                    to="/expense"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "btn bg-white text-black border-none"
+                            : "btn btn-outline border-x-neutral "
+                    }
+                >
+                    <GiExpense size={20} /> Expense
+                </NavLink>
             </li>
             <li>
-                <NavLink to={"/"} className={"btn btn-outline border-x-neutral border-y-neutral"}><FaRegChartBar size={20} ></FaRegChartBar> Statement</NavLink>
+                <NavLink
+                    to="/statement"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "btn bg-white text-black border-none"
+                            : "btn btn-outline border-x-neutral "
+                    }
+                >
+                    <FaRegChartBar size={20} /> Statement
+                </NavLink>
             </li>
         </>
-    )
+    );
+
 
     return (
         <div className='bg-primary text-white p-5 md:h-[95vh] rounded flex flex-col items-center justify-center'>
