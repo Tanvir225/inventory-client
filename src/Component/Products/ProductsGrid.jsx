@@ -165,6 +165,7 @@ const ProductsGrid = ({ products, loading, updateProduct, deleteProduct }) => {
                         <form onSubmit={handleUpdateProduct}>
                             <div className="flex flex-col gap-3 mt-5">
                                 <input
+                                required
                                     type="text"
                                     name="productName"
                                     value={selectedProduct.name || ""}
@@ -173,6 +174,7 @@ const ProductsGrid = ({ products, loading, updateProduct, deleteProduct }) => {
                                     className="input input-primary focus:outline-none w-full"
                                 />
                                 <select
+                                    required
                                     name="category"
                                     className="select select-primary w-full focus:outline-none"
                                     value={selectedProduct.category?.name || ""}  // Use _id as value for category
@@ -189,6 +191,7 @@ const ProductsGrid = ({ products, loading, updateProduct, deleteProduct }) => {
                                     ))}
                                 </select>
                                 <select
+                                    required
                                     name="unit"
                                     className="select select-primary w-full focus:outline-none"
                                     value={selectedProduct.unit?.name || ""}  // Use _id as value for unit
@@ -205,6 +208,7 @@ const ProductsGrid = ({ products, loading, updateProduct, deleteProduct }) => {
                                     ))}
                                 </select>
                                 <input
+                                    required
                                     type="text"
                                     name="purchasePrice"
                                     value={selectedProduct.purchasePrice || ""}
@@ -213,6 +217,7 @@ const ProductsGrid = ({ products, loading, updateProduct, deleteProduct }) => {
                                     className="input input-primary focus:outline-none w-full"
                                 />
                                 <input
+                                    required
                                     type="text"
                                     name="sellPrice"
                                     value={selectedProduct.sellPrice || ""}
@@ -221,6 +226,7 @@ const ProductsGrid = ({ products, loading, updateProduct, deleteProduct }) => {
                                     className="input input-primary focus:outline-none w-full"
                                 />
                                 <input
+                                    required
                                     type="text"
                                     name="stock"
                                     value={selectedProduct.stock || ""}

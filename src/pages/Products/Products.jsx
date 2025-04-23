@@ -117,7 +117,7 @@ const Products = () => {
                     {/* product add form */}
                     <form onSubmit={handleSubmit}>
                         <div className="flex flex-col gap-3 mt-5">
-                            <input type="text" name="productName" placeholder="Product Name" className="input input-primary focus:outline-none w-full" />
+                            <input type="text" required name="productName" placeholder="Product Name" className="input input-primary focus:outline-none w-full" />
                             <select name="category" className="select select-primary w-full focus:outline-none">
                                 <option disabled selected>select category</option>
                                 {
@@ -126,7 +126,7 @@ const Products = () => {
                                     ))
                                 }
                             </select>
-                            <select name="unit" className="select select-primary w-full focus:outline-none" defaultValue="filter by category">
+                            <select name="unit" required className="select select-primary w-full focus:outline-none" defaultValue="filter by category">
                                 <option disabled selected>select unit</option>
                                 {
                                     units?.map((unit) => (
@@ -134,9 +134,9 @@ const Products = () => {
                                     ))
                                 }
                             </select>
-                            <input type="text" name="purchasePrice" placeholder="Purchase Price" className="input input-primary focus:outline-none w-full" />
-                            <input type="text" name="sellPrice" placeholder="Sell Price" className="input input-primary focus:outline-none w-full" />
-                            <input type="text" name="stock" placeholder="Stock" className="input input-primary focus:outline-none w-full" />
+                            <input type="text" required name="purchasePrice" placeholder="Purchase Price" className="input input-primary focus:outline-none w-full" />
+                            <input type="text" required name="sellPrice" placeholder="Sell Price" className="input input-primary focus:outline-none w-full" />
+                            <input type="text" required name="stock" placeholder="Stock" className="input input-primary focus:outline-none w-full" />
                             <button type="submit" className="btn btn-primary">Add Product</button>
                         </div>
 
