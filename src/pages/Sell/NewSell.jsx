@@ -59,6 +59,11 @@ const NewSell = () => {
             returnAmount: returnAmount,
             items: updateSell,
         };
+
+        if (!customerName || !customerPhone) {
+            toast.error("Please fill in all customer details.");
+            return;
+        }
         const res = await axios.post("/sales", saleData);
         console.log(res.data);
         toast.success(res?.data?.message);
@@ -120,9 +125,9 @@ const NewSell = () => {
 
             {/* Customer Info */}
             <div className="flex flex-col md:flex-row gap-4">
-                <input type="text" placeholder="Customer Name" className="input focus:outline-none input-bordered w-full"
+                <input type="text" required placeholder="Customer Name" className="input focus:outline-none input-bordered w-full"
                     value={customerName} onChange={(e) => setCustomerName(e.target.value)} />
-                <input type="text" placeholder="Customer Phone" className="input focus:outline-none input-bordered w-full"
+                <input type="text" required placeholder="Customer Phone" className="input focus:outline-none input-bordered w-full"
                     value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} />
             </div>
 
@@ -145,11 +150,11 @@ const NewSell = () => {
                         )}
                     </div>
                     <div className="w-full">
-                        <input type="text" readOnly value={productName} placeholder="product name" className="input input-bordered focus:outline-none w-full" />
+                        <input type="text" required readOnly value={productName} placeholder="product name" className="input input-bordered focus:outline-none w-full" />
                     </div>
 
                     <div className="w-full">
-                        <input type="number" min="1" placeholder="Quantity" className="input input-bordered focus:outline-none w-full"
+                        <input type="number" required min="1" placeholder="Quantity" className="input input-bordered focus:outline-none w-full"
                             value={quantity} onChange={(e) => setQuantity(e.target.value)} />
                     </div>
                 </section>

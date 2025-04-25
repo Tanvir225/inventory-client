@@ -7,6 +7,8 @@ import Purchase from "../pages/Purchase/Purchase";
 import NewPurchase from "../pages/Purchase/NewPurchase";
 import NewSell from "../pages/Sell/NewSell";
 import Payable from "../pages/Payable/Payable";
+import Expense from "../pages/Expense/Expense";
+import AddExpense from "../pages/Expense/AddExpense";
 
 const router = createBrowserRouter([
     {
@@ -41,6 +43,14 @@ const router = createBrowserRouter([
             {
                 path: "/payable",
                 element:<Payable></Payable>
+            },
+            {
+                path: "/expense",
+                element:<Expense></Expense>
+            },
+            {
+                path: "/expense/new",
+                element:<AddExpense></AddExpense>
             },
         ]
     }

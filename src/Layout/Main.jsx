@@ -8,7 +8,7 @@ const Main = () => {
             <div className="col-span-full md:col-span-3 ">
                 <Sidebar></Sidebar>
             </div>
-            <div className="col-span-full md:col-span-9  h-[97vh]">
+            <div className="col-span-full md:col-span-9  h-[96vh]">
                 <Outlet></Outlet>
             </div>
         </div>

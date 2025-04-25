@@ -82,6 +82,7 @@ const AddPurchase = () => {
             <form onSubmit={handleSubmit} className="space-y-5">
                 <input
                     type="date"
+                    required
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     className="input input-bordered input-primary w-full focus:outline-none"
@@ -89,6 +90,7 @@ const AddPurchase = () => {
                 <div className="flex gap-3 items-center">
                     <input
                         type="text"
+                        required
                         placeholder="name | Company"
                         value={supplierName}
                         onChange={(e) => setSupplierName(e.target.value)}
@@ -96,6 +98,7 @@ const AddPurchase = () => {
                     />
                     <input
                         type="text"
+                        required
                         placeholder="phone number"
                         value={supplierPhone}
                         onChange={(e) => setSupplierPhone(e.target.value)}
@@ -109,6 +112,7 @@ const AddPurchase = () => {
                         <div className="w-full">
                             <input
                                 type="text"
+                                required
                                 placeholder="পণ্য সার্চ করুন"
                                 value={entry.search || entry.name || ""}
                                 onChange={(e) => handleSearch(idx, e.target.value)}
@@ -135,6 +139,7 @@ const AddPurchase = () => {
 
                         <input
                             type="number"
+                            required
                             placeholder="পরিমাণ"
                             value={entry.quantity}
                             onChange={(e) => {
@@ -147,6 +152,7 @@ const AddPurchase = () => {
 
                         <input
                             type="number"
+                            required
                             placeholder="দাম"
                             value={entry.unitPrice}
                             onChange={(e) => {

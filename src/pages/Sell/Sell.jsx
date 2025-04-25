@@ -6,7 +6,7 @@ import Loading from '../../Component/Shared/Loading';
 import SellGrid from '../../Component/Sell/SellGrid';
 
 const Sell = () => {
-    const { sell, loading, error,refetch } = useSell();
+    const { sell, loading,refetch } = useSell();
 
     // Check if loading or error
     if (loading) {
