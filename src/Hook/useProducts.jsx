@@ -84,4 +84,6 @@ const useProducts = () => {
     return { products, loading, error, addProduct, updateProduct, deleteProduct };
 };
 
+
+
 export default useProducts;

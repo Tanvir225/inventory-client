@@ -126,7 +126,7 @@ const ExpenseGrid = ({ expenses, refetch, updateExpense }) => {
 
     console.log(expenses);
     return (
-        <div className='ag-theme-quartz w-full h-96 '>
+        <div className='ag-theme-quartz w-full h-[80vh] '>
 
             <AgGridReact
                 ref={gridRef}

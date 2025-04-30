@@ -141,7 +141,7 @@ const ProductsGrid = ({ products, loading, updateProduct, deleteProduct }) => {
 
 
     return (
-        <div className="ag-theme-quartz w-full h-96">
+        <div className="ag-theme-quartz w-full h-[75vh]">
             <AgGridReact
 
                 pagination={pagination}

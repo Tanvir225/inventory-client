@@ -13,10 +13,10 @@ const Sidebar = () => {
             <li>
                 <NavLink
                     to="/"
-                    className={({ isActive }) =>
+                    className={ ({ isActive }) =>
                         isActive
-                            ? "btn bg-white text-black border-none"
-                            : "btn btn-outline border-x-neutral"
+                            ? "btn md:w-32 bg-white text-black border-none"
+                            : "btn md:w-32 btn-outline border-x-neutral"
                     }
                 >
                     <BsShopWindow size={20} /> Home
@@ -27,8 +27,8 @@ const Sidebar = () => {
                     to="/products"
                     className={({ isActive }) =>
                         isActive
-                            ? "btn bg-white text-black border-none"
-                            : "btn btn-outline border-x-neutral "
+                            ? "btn md:w-32 bg-white text-black border-none"
+                            : "btn md:w-32 btn-outline border-x-neutral "
                     }
                 >
                     <AiOutlineProduct size={20} /> Products
@@ -39,8 +39,8 @@ const Sidebar = () => {
                     to="/purchase"
                     className={({ isActive }) =>
                         isActive
-                            ? "btn bg-white text-black border-none"
-                            : "btn btn-outline border-x-neutral "
+                            ? "btn md:w-32 bg-white text-black border-none"
+                            : "btn md:w-32 btn-outline border-x-neutral "
                     }
                 >
                     <BiPurchaseTagAlt size={20} /> Purchase
@@ -51,8 +51,8 @@ const Sidebar = () => {
                     to="/sell"
                     className={({ isActive }) =>
                         isActive
-                            ? "btn bg-white text-black border-none"
-                            : "btn btn-outline border-x-neutral "
+                            ? "btn md:w-32 bg-white text-black border-none"
+                            : "btn md:w-32 btn-outline border-x-neutral "
                     }
                 >
                     <GiSellCard size={20} /> Sell
@@ -63,8 +63,8 @@ const Sidebar = () => {
                     to="/payable"
                     className={({ isActive }) =>
                         isActive
-                            ? "btn bg-white text-black border-none"
-                            : "btn btn-outline border-x-neutral "
+                            ? "btn md:w-32 bg-white text-black border-none"
+                            : "btn md:w-32 btn-outline border-x-neutral "
                     }
                 >
                     <GiPayMoney size={20} className="mt-1" /> Payable
@@ -75,8 +75,8 @@ const Sidebar = () => {
                     to="/expense"
                     className={({ isActive }) =>
                         isActive
-                            ? "btn bg-white text-black border-none"
-                            : "btn btn-outline border-x-neutral "
+                            ? "btn md:w-32 bg-white text-black border-none"
+                            : "btn md:w-32 btn-outline border-x-neutral "
                     }
                 >
                     <GiExpense size={20} /> Expense
@@ -87,8 +87,8 @@ const Sidebar = () => {
                     to="/statement"
                     className={({ isActive }) =>
                         isActive
-                            ? "btn bg-white text-black border-none"
-                            : "btn btn-outline border-x-neutral "
+                            ? "btn md:w-32 bg-white text-black border-none"
+                            : "btn md:w-32 btn-outline border-x-neutral "
                     }
                 >
                     <FaRegChartBar size={20} /> Statement

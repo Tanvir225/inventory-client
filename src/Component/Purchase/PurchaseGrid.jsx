@@ -124,7 +124,7 @@ const PurchaseGrid = ({ purchase,refetch }) => {
 
 
     return (
-        <div className='ag-theme-quartz w-full h-96'>
+        <div className='ag-theme-quartz w-full h-[70vh]'>
 
             <AgGridReact
                 ref={gridRef}
