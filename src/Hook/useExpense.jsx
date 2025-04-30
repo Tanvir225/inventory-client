@@ -13,7 +13,7 @@ const useExpense = () => {
     const fetchExpenses = async () => {
       try {
         setLoading(true);
-        const { data } = await axios.get("/api/expenses");
+        const { data } = await axios.get("/expenses");
         setExpenses(data);
         setError(null);
       } catch (err) {
@@ -25,13 +25,37 @@ const useExpense = () => {
   
     const addExpense = async (expenseData) => {
       try {
-        const { data } = await axios.post("/api/expenses", expenseData);
+        const { data } = await axios.post("/expenses", expenseData);
         setExpenses((prev) => [data, ...prev]); // update list immediately
       } catch (err) {
         console.error("Add expense error:", err);
         throw err;
       }
     };
+
+    //update expense
+    const updateExpense = async (id, expenseData) => {
+      try {
+        const { data } = await axios.patch(`/expenses/${id}`, expenseData);
+        setExpenses((prev) =>
+          prev.map((expense) => (expense._id === id ? data : expense))
+        );
+      } catch (err) {
+        console.error("Update expense error:", err);
+        throw err;
+      }
+    };
+
+    //delete expense
+    const deleteExpense = async (id) => {
+      try {
+        await axios.delete(`/expenses/${id}`);
+        setExpenses((prev) => prev.filter((expense) => expense._id !== id));
+      } catch (err) {
+        console.error("Delete expense error:", err);
+        throw err;
+      }
+    };  
   
     useEffect(() => {
       fetchExpenses();
@@ -39,6 +63,8 @@ const useExpense = () => {
   
     return {
       expenses,
+      updateExpense,
+      deleteExpense,
       loading,
       error,
       addExpense,
