@@ -41,6 +41,12 @@ const NewSell = () => {
             quantity: Number(quantity),
             sellPrice: Number(sellPrice),
         };
+        //check quantity of product
+        const product = products.find((product) => product._id === id);
+        if (product.stock < quantity) {
+            toast.error("Not enough stock available.");
+            return;
+        }
         setUpdateSell([...updateSell, addSell]);
         setSearch(""); // clear search
     };
