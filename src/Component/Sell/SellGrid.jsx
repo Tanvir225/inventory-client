@@ -186,7 +186,7 @@ const SellGrid = ({ sell,refetch }) => {
                                     <ul className="list-disc ml-5">
                                         {details.items.map((item, i) => (
                                             <li key={i}>
-                                                {item.name} - {item.quantity} x {item.unitPrice} tk
+                                                {item.name} - {item.quantity} x {item.sellPrice} tk
                                             </li>
                                         ))}
                                     </ul>
