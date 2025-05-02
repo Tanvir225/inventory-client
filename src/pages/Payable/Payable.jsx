@@ -26,8 +26,8 @@ const Payable = () => {
             <div className="flex justify-between items-center  p-2 border-b-2 border-gray-200">
                 <div>
                     <h1 className="text-xl font-semibold">Due - Sell</h1>
-                    <p className="text-gray-500">Manage your Dues</p>
-                    <p className="text-sm text-gray-700">Total Dues: <span className="font-semibold text-primary">{total} TK</span></p>
+                    <p className="">Manage your Dues</p>
+                    <p className="text-sm ">Total Dues: <span className="font-semibold text-primary">{total} TK</span></p>
 
                 </div>
             </div>

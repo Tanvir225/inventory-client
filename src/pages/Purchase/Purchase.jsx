@@ -31,10 +31,10 @@ const Purchase = () => {
             <div className="flex justify-between items-center  p-2 border-b-2 border-gray-200">
                 <div>
                     <h1 className="text-xl font-semibold">Purchase</h1>
-                    <p className="text-gray-500">Manage your purchase</p>
-                    <p className="text-sm text-gray-700">Total Purchase: <span className="font-semibold text-primary">{totalAmount} TK</span></p>
-                    <p className="text-sm text-gray-700">Total Paid: <span className="font-semibold text-primary">{givenCash} TK</span></p>
-                    <p className="text-sm text-gray-700">My Due: <span className="font-semibold text-red-800">{dueAmount} TK</span></p>
+                    <p className="">Manage your purchase</p>
+                    <p className="text-sm ">Total Purchase: <span className="font-semibold text-primary">{totalAmount} TK</span></p>
+                    <p className="text-sm ">Total Paid: <span className="font-semibold text-primary">{givenCash} TK</span></p>
+                    <p className="text-sm ">My Due: <span className="font-semibold text-red-800">{dueAmount} TK</span></p>
 
                 </div>
                 <Link to={"/purchase/add"} className="btn btn-primary btn-outline">

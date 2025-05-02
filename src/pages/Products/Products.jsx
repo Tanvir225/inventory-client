@@ -4,6 +4,7 @@ import useCategories from "../../Hook/useCategories";
 import useProducts from "../../Hook/useProducts";
 import ProductsGrid from "../../Component/Products/ProductsGrid";
 import toast from "react-hot-toast";
+import { useOutletContext } from "react-router-dom";
 
 
 const Products = () => {
@@ -11,6 +12,7 @@ const Products = () => {
     // units and categories data fetching
     const { units } = useUnits();
     const { categories } = useCategories();
+    const {currentTheme } = useOutletContext(); // 👈 this is crucial
 
     //products data fetching adding
     const {
@@ -83,18 +85,18 @@ const Products = () => {
     return (
         <div>
             {/* topbar */}
-            <section className="my-2 flex items-center justify-between gap-3 border-b-2  pb-3">
+            <section className={`my-2 flex items-center justify-between gap-3 border-b-2  pb-3`}>
                 <div>
                     <h2 className="text-xl font-semibold">{products.length}| Products</h2>
-                    <p className="text-sm text-gray-700">Manage your products here</p>
+                    <p className="text-sm ">Manage your products here</p>
                     <div className="flex flex-col mt-1">
                         <div>
-                            <p className="text-sm text-gray-700">Total Purchase Price: <span className="font-semibold text-primary">{totalPurchase.toFixed(2)} TK</span></p>
+                            <p className="text-sm ">Total Purchase Price: <span className="font-semibold text-primary">{totalPurchase.toFixed(2)} TK</span></p>
 
                         </div>
                         <div className="flex gap-2">
-                            <p className="text-sm text-gray-700">Total Sell Price: <span className="font-semibold text-primary">{totalSell.toFixed(2)} TK</span></p>
-                            <p className="text-sm text-gray-700">Total Profit : <span className="font-semibold text-primary">{totalProfit.toFixed(2)} TK</span></p>
+                            <p className="text-sm ">Total Sell Price: <span className="font-semibold text-primary">{totalSell.toFixed(2)} TK</span></p>
+                            <p className="text-sm ">Total Profit : <span className="font-semibold text-primary">{totalProfit.toFixed(2)} TK</span></p>
                         </div>
                     </div>
                 </div>

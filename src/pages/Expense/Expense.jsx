@@ -27,7 +27,7 @@ const Expense = () => {
             <div className="flex justify-between items-center  p-2 border-b-2 border-gray-200">
                 <div>
                     <h1 className="text-xl font-semibold">Your Expense</h1>
-                    <p className="text-sm text-gray-700">Total Expense: <span className="font-semibold text-primary">{totalAmount} TK</span></p>
+                    <p className="text-sm ">Total Expense: <span className="font-semibold text-primary">{totalAmount} TK</span></p>
 
                 </div>
                 <Link to={"/expense/new"} className="btn btn-primary btn-outline">
@@ -36,7 +36,7 @@ const Expense = () => {
             </div>
 
             {/* grid */}
-            <div>
+            <div className="my-5">
                 <ExpenseGrid refetch={refetch} expenses={expenses} updateExpense={updateExpense}></ExpenseGrid>
             </div>
 
