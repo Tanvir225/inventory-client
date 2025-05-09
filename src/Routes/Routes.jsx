@@ -9,6 +9,7 @@ import NewSell from "../pages/Sell/NewSell";
 import Payable from "../pages/Payable/Payable";
 import Expense from "../pages/Expense/Expense";
 import AddExpense from "../pages/Expense/AddExpense";
+import Login from "../pages/Auth/Login";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
                 element:<AddExpense></AddExpense>
             },
         ]
+    },
+    {
+        path: "/login",
+        element: <Login></Login>
     }
 ]);
 
