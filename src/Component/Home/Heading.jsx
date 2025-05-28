@@ -18,7 +18,7 @@ const Heading = () => {
     };
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-3">
             <div className="navbar bg-base-200 shadow-md rounded-md px-5 sticky top-0 z-50">
                 <div className="flex-1">
                     <a className="btn btn-ghost text-xl">Ananda Store</a>
