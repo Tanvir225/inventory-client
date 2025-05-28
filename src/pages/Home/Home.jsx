@@ -38,9 +38,9 @@ const Home = () => {
 
             <section className="mt-3 flex flex-col lg:flex-row gap-5 w-full">
                 {/* top products */}
-                <div className="w-full">
+                <div className="w-full md:w-[50%]">
                     <h1 className="text-xl font-semibold text-gray-700">Top 5 Selling Products</h1>
-                    <TopProducts data={topProducts}></TopProducts>
+                    <TopProducts data={topProducts} ></TopProducts>
                 </div>
 
                 {/* Profit Trends */}

@@ -1,10 +1,23 @@
+import toast from "react-hot-toast";
+import useAuth from "../../Hook/useAuth";
 import useAxios from "../../Hook/useAxios";
+import { useLocation, useNavigate } from "react-router-dom";
+import { updateProfile } from "firebase/auth";
 
 
 const Login = () => {
 
     //useAxios 
     const axios = useAxios();
+
+    const { login } = useAuth()
+
+    //useNavugate
+    const navigate = useNavigate();
+
+    //useLocation
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/";
 
     // Handle form submission
     const handleSubmit = (e) => {
@@ -13,17 +26,34 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         // const user = { email, password };
-      
-        // Perform login action here, e.g., send user data to the server
-        axios.get(`/users?email=${email}`)
+        login(email, password)
             .then((res) => {
-                console.log(res.data);
+                console.log(res.user);
+                // const user = { email: res.user?.email }
+                // console.log(user);
+                form.reset();
+                toast.success("logged in");
 
-                    
-              
+                //get user data from server
+                axios.get(`/user?email=${res.user?.email}`)
+                    .then((response) => {
+                        const userData = response.data;
+                        console.log("User data:", userData);
+                        //update profile with user data
+                        updateProfile(res.user, {
+                            displayName: userData?.name || "User",
+                            photoURL: userData?.image
+                        }).then(() => {
+                            console.log("Profile updated successfully");
+                        })
+                    })
+
+                //navigate to the previous page
+                navigate(from, { replace: true });
+
             })
-            .catch((err) => {
-                console.error(err);
+            .catch((error) => {
+                console.error("Error logging in:", error);
             });
 
     };

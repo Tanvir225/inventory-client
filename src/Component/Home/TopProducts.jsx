@@ -19,7 +19,7 @@ const TopProducts = ({ data }) => {
     };
 
     return (
-        <div className='w-full h-[220px] bg-white shadow-md rounded-lg p-2'>
+        <div className='w-full h-[230px] flex justify-center p-2'>
             <Pie data={chartData} />
         </div>
     );

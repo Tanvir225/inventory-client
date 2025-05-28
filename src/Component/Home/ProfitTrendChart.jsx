@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 import useAxios from '../../Hook/useAxios';
-import Loading from '../Shared/Loading';
 import { HashLoader } from 'react-spinners';
 
 const ProfitTrendChart = () => {

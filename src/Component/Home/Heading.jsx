@@ -1,10 +1,21 @@
 import moment from "moment-js";
 import useProducts from "../../Hook/useProducts";
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
+import useAuth from "../../Hook/useAuth";
+import toast from "react-hot-toast";
 
 const Heading = () => {
     const { products } = useProducts();
     const { toggleTheme, currentTheme } = useOutletContext(); // 👈 this is crucial
+    const { user, logOut } = useAuth();
+
+    //handleLogOut
+    const handleLogOut = () => {
+        logOut().then((res) => {
+            console.log(res);
+            toast.success("logout Successfull");
+        });
+    };
 
     return (
         <div className="space-y-5">
@@ -18,28 +29,47 @@ const Heading = () => {
                         {currentTheme === "light" ? "🌙 Dark" : "☀️ Light"}
                     </button>
 
-                    <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img
-                                    alt="User"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                                />
+                    {
+                        user ? (
+                            <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img
+                                            src={user?.photoURL}
+                                            alt={`${user?.displayName} image`}
+                                        />
+                                    </div>
+                                </div>
+                                <ul
+                                    tabIndex={0}
+                                    className="menu space-y-1 menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                                >
+                                    <li>
+                                        <a className="justify-between">
+                                            Profile
+                                            <span className="badge">New</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a className="justify-between text-base">
+                                            {user?.displayName || "User Name"}
+                                        </a>
+                                    </li>
+                                    <Link
+                                        to={"/"}
+                                        onClick={handleLogOut}
+                                        className="btn btn-sm btn-primary md:w-1/2 ml-2"
+                                    >
+                                        Logout
+                                    </Link>
+                                </ul>
                             </div>
-                        </div>
-                        <ul
-                            tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-                        >
-                            <li>
-                                <a className="justify-between">
-                                    Profile
-                                    <span className="badge">New</span>
-                                </a>
-                            </li>
-                            <li><a>Logout</a></li>
-                        </ul>
-                    </div>
+                        ) : (
+                            <Link to={"/login"} className="btn btn-sm btn-primary">
+                                Login
+                            </Link>
+                        )
+                    }
                 </div>
             </div>
 
